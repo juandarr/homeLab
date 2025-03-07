@@ -1,0 +1,23 @@
+---
+services:
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: jellyfin
+    network_mode: bridge
+    devices:
+      - /dev/dri:/dev/dri
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Bogota
+      - DOCKER_MODS=linuxserver/mods:jellyfin-opencl-intel
+    volumes:
+      - /home/overcode/docker/jellyfin/config:/config
+      - /home/overcode/media/movies:/data/movies
+      - /home/overcode/media/videos:/data/videos
+      - /home/overcode/media/music:/data/music
+      - /home/overcode/media/tvshows:/data/tvshows
+    ports:
+      - 8096:8096 #HTTP
+      - 8920:8920 #HTTPS
+    restart: unless-stopped
