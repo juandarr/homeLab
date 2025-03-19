@@ -1,0 +1,20 @@
+name: 'code'
+
+services:
+  collabora:
+    image: collabora/code:latest
+    container_name: collabora
+    environment:
+      - aliasgroup1=https://next.moon.lan:443,https://next\\.moon\\.lan:443 # enable for aliasgroup1
+      # - aliasgroup2=https://cloud.otherdomain.tld:443,https://cloud\\.otherdomain\\.tld:443 # enable for aliasgroup2
+      # - aliasgroup3=https://cloud.somedomain.tld:443,https://cloud\\.somedomain\\.tld:443 # enable for aliasgroup3
+      - username=a_name
+      - password=pick_a_password        # Replace with a strong password
+      - dictionaries=en_GB,en_US,es_CO
+      - extra_params=
+        --o:ssl.enable=false 
+        --o:ssl.termination=true
+        --o:logging.level=warning
+    ports:
+      - "9980:9980"
+    restart: always
